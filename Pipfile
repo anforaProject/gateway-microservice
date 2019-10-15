@@ -9,6 +9,7 @@ verify_ssl = true
 fastapi = "*"
 aiohttp = "*"
 python-multipart = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.7"

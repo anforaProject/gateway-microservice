@@ -1,7 +1,7 @@
 import os
 
 from fastapi import APIRouter
-from client import aio
+from v1.client import aio
 
 router = APIRouter()
 
@@ -11,7 +11,7 @@ user_server = f"http://localhost:{os.environ.get('users_port')}"
 async def retrive_user(id):
 
     request = await aio.get(f'{user_server}/{id}')
-    json = await request.text()
+    json = await request.json()
 
     return json
     
@@ -23,7 +23,7 @@ async def retrive_user_followers(id, limit:int=40):
     
     request = await aio.get(f'{user_server}/{id}/followers',
                             params = params)
-    json = await request.text()
+    json = await request.json()
 
     return json
 
@@ -34,7 +34,7 @@ async def retrive_user_following(id, limit:int=40):
 
     request = await aio.get(f'{user_server}/{id}/following',
                             params = params)
-    json = await request.text()
+    json = await request.json()
 
     return json
 
@@ -45,6 +45,6 @@ async def retrive_user_statuses(id, limit:int=40):
 
     request = await aio.get(f'{user_server}/{id}/statuses',
                             params = params)
-    json = await request.text()
+    json = await request.json()
 
     return json
