@@ -10,6 +10,7 @@ fastapi = "*"
 aiohttp = "*"
 python-multipart = "*"
 uvicorn = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"
