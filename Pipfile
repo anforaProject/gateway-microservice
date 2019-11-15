@@ -12,6 +12,7 @@ python-multipart = "*"
 uvicorn = "*"
 pyjwt = "*"
 passlib = {extras = ["bcrypt"],version = "*"}
+aiosqlite = "*"
 
 [requires]
 python_version = "3.7"
