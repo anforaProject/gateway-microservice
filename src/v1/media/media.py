@@ -5,18 +5,25 @@ from v1.client import aio
 
 router = APIRouter()
 
-media_server = f"http://localhost:{os.environ.get('media_port')}"
+media_server = f"http://localhost:{os.environ.get('media_port')}/api/v1/media"
 
-@router.get("/media/{id}")
-async def retrive_user(id, file:UploadFile=File(...), description:str='', focus:str='0,0'):
+class Media(BaseModel):
+    user_id: str
+    description: str
+    focus: str
+    
+@router.post("/")
+async def create_media(id, fil:UploadFile=File(...), media:Media):
 
     data = {
-        'file':file,
-        'description':description,
-        'focus':focus
+        'user_id' = media.user_id,
+        'description' = media.description,
+        'focusx' = float(media.focus.split('.')[0]),
+        'focusy' = float(media.focus.split('.')[1]),
+        'fil' = fil
     }
     
-    request = await aio.post(f'{media_server}/media', data=data)
+    request = await aio.post(f'{media_server}', data=data)
     json = await request.text()
 
     return json
